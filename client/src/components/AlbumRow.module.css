@@ -1,0 +1,109 @@
+.row {
+  display: grid;
+  grid-template-columns: 36px 44px 1fr 100px 110px;
+  gap: 12px;
+  align-items: center;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.1s;
+}
+
+.row:hover { background: var(--bg-hover); border-radius: var(--radius); }
+.row:last-child { border-bottom: none; }
+
+.num {
+  font-size: 12px;
+  color: var(--text-faint);
+  text-align: center;
+}
+
+.art {
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--bg-card);
+  flex-shrink: 0;
+}
+
+.art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.artPlaceholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: var(--text-faint);
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.title {
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.artist {
+  font-size: 12px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.badgeCell { text-align: right; }
+
+.badge {
+  display: inline-block;
+  font-size: 11px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.found {
+  background: var(--green-dim);
+  color: var(--green);
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+
+.found:hover { opacity: 0.8; }
+
+.notFound {
+  background: var(--bg-card);
+  color: var(--text-faint);
+}
+
+.pending {
+  background: rgba(250, 199, 117, 0.1);
+  color: #c89b3c;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+.price {
+  font-size: 12px;
+  font-weight: 500;
+  text-align: right;
+  color: var(--text);
+}
+
+.dash { color: var(--text-faint); }
