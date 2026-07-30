@@ -31,7 +31,7 @@ export default function LoginPage() {
           </p>
         )}
 
-        <a href="http://localhost:5000/auth/login" className={styles.button}>
+        <a href={`${import.meta.env.VITE_API_URL}/auth/login`} className={styles.button}>
           <SpotifyIcon />
           Connect with Spotify
         </a>

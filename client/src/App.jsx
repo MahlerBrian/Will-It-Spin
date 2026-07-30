@@ -9,6 +9,8 @@ export const useAuth = () => useContext(AuthContext);
 
 axios.defaults.withCredentials = true;
 
+const API = import.meta.env.VITE_API_URL;
+
 export default function App() {
   const [user, setUser]     = useState(undefined);
   const [loading, setLoading] = useState(true);
@@ -33,7 +35,7 @@ export default function App() {
     }
 
     axios
-      .get('http://localhost:5000/auth/me', {
+      .get(`${API}/auth/me`, {
         headers: activeSid ? { 'x-session-id': activeSid } : {}
       })
       .then((res) => setUser(res.data.user))

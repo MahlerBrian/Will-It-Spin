@@ -5,6 +5,7 @@ import AlbumRow from '../components/AlbumRow.jsx';
 import StatsBar from '../components/StatsBar.jsx';
 import styles from './DashboardPage.module.css';
 
+const API = import.meta.env.VITE_API_URL;
 const POLL_INTERVAL = 2000;
 const PAGE_SIZE = 50;
 const DISPLAY_PAGE_SIZE = 50;
@@ -42,7 +43,7 @@ export default function DashboardPage() {
 
       // Load first page and show immediately
       const { data: firstPage } = await axios.get(
-        `http://localhost:5000/api/albums?limit=${PAGE_SIZE}&offset=0`,
+        `${API}/api/albums?limit=${PAGE_SIZE}&offset=0`,
         { headers }
       );
       setTotalAlbums(firstPage.total);
@@ -55,7 +56,7 @@ export default function DashboardPage() {
       while (offset < firstPage.total) {
         setLoadingMore(true);
         const { data: nextPage } = await axios.get(
-          `http://localhost:5000/api/albums?limit=${PAGE_SIZE}&offset=${offset}`,
+          `${API}/api/albums?limit=${PAGE_SIZE}&offset=${offset}`,
           { headers }
         );
         const combined = [...allAlbumsRef.current, ...nextPage.albums];
@@ -86,7 +87,7 @@ export default function DashboardPage() {
     const headers = getHeaders();
     try {
       const { data: job } = await axios.post(
-        'http://localhost:5000/api/vinyl/batch',
+        `${API}/api/vinyl/batch`,
         { albums: unchecked.map((a) => ({ id: a.id, artist: a.primaryArtist, title: a.title })) },
         { headers }
       );
@@ -102,7 +103,7 @@ export default function DashboardPage() {
     const interval = setInterval(async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:5000/api/vinyl/status/${jobId}`,
+          `${API}/api/vinyl/status/${jobId}`,
           { headers: getHeaders() }
         );
         setVinyl((prev) => ({ ...prev, ...data.results }));
@@ -121,7 +122,7 @@ export default function DashboardPage() {
   // ── Logout ────────────────────────────────────────────────────────────────
 
   const handleLogout = async () => {
-    await axios.get('http://localhost:5000/auth/logout', { headers: getHeaders() });
+    await axios.get(`${API}/auth/logout`, { headers: getHeaders() });
     sessionStorage.removeItem('sid');
     setUser(null);
   };
