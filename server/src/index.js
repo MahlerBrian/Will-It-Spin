@@ -8,6 +8,8 @@ import authRoutes from './routes/auth.js';
 import albumRoutes from './routes/albums.js';
 import vinylRoutes from './routes/vinyl.js';
 
+console.log('ENV KEYS:', Object.keys(process.env).filter(k => ['MONGO_URI','SESSION_SECRET','NODE_ENV','CLIENT_URL','PORT'].includes(k)));
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 const isProd = process.env.NODE_ENV === 'production';
