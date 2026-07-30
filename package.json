@@ -1,0 +1,11 @@
+{
+  "name": "vinyl-finder",
+  "private": true,
+  "scripts": {
+    "postinstall": "cd server && npm install",
+    "start": "cd server && node src/index.js"
+  },
+  "engines": {
+    "node": "18.x"
+  }
+}
